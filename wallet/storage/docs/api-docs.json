@@ -1,0 +1,127 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Wallet API",
+        "description": "This API is used by different P2S systems for handling wallet transactions",
+        "termsOfService": "",
+        "contact": {
+            "email": "akshay.singh@power2sme.com"
+        },
+        "license": {
+            "name": "power2sme pvt ltd.",
+            "url": "power2sme.com"
+        },
+        "version": "1.0.0"
+    },
+    "host": "localhost:8000",
+    "basePath": "/",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "paths": {
+        "/api/authenticate": {
+            "post": {
+                "tags": [
+                    "Get JWT token"
+                ],
+                "summary": "Get JWT token",
+                "description": "Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
+                "operationId": "authenticate",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "multipart/form-data"
+                ],
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "user email",
+                        "required": true,
+                        "type": "string",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi"
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "user password",
+                        "required": true,
+                        "type": "string",
+                        "items": {
+                            "type": "string"
+                        },
+                        "collectionFormat": "multi"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "error"
+                    }
+                }
+            }
+        },
+        "/api/credit": {
+            "post": {
+                "tags": [
+                    "Credit"
+                ],
+                "summary": "Add credit",
+                "description": "Muliple tags can be provided with comma separated strings. Use tag1, tag2, tag3 for testing.",
+                "operationId": "credit",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "JWT Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "type": "string",
+                        "collectionFormat": "multi"
+                    },
+                    {
+                        "name": "Body",
+                        "in": "body",
+                        "description": "P2s ID",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/wallet"
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "error"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {},
+    "externalDocs": {
+        "description": "Find out more about my website",
+        "url": "https://www.power2sme.com"
+    }
+}

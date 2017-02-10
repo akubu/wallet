@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Model\credit;
 use App\Model\creditMaster;
 use App\Model\wallet;
+use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Support\Facades\DB;
@@ -65,8 +67,8 @@ class walletController extends Controller
 
     public function credit(Request $request)
     {
-//        dd($request->creditType);
-//        dd($request->creditType);
+//        $amount=credit::where('id','=','5')->pluck('credit_amount');
+//        return (Crypt::decrypt($amount[0]));
         DB::beginTransaction();
         try {
             $newCredit = new credit();
@@ -94,15 +96,22 @@ class walletController extends Controller
                 }
 
             }
-            $newCredit->credit_amount=$request->creditAmount;
+            $newCredit->credit_amount=Crypt::encrypt($request->creditAmount);
             $newCredit->requested_by=$request->requestedBy;
             $newCredit->order_id=$request->orderID;
             $newCredit->save();
             if((wallet::where('P2S_id','=',$request->p2sID)->first())){
                 try{
                     $current_balance=wallet::where('P2S_id','=',$request->p2sID)->pluck('balance');
-//                                        dd($current_balance);
-                    $new_balance=$current_balance[0]+$request->creditAmount;
+
+                    try {
+                        $new_balance = Crypt::decrypt($current_balance[0]) + $request->creditAmount;
+
+                    }catch (DecryptException $exception){
+                        DB::rollback();
+                        return $exception;
+                    }
+                    $new_balance=Crypt::encrypt($new_balance);
                     wallet::where('P2S_id','=',$request->p2sID)->update(['balance'=>$new_balance]);
                 }
                 catch (QueryException $exception){
@@ -114,7 +123,7 @@ class walletController extends Controller
                 try{
                     $newWalletEntry=new wallet();
                     $newWalletEntry->P2S_id=$request->p2sID;
-                    $newWalletEntry->balance=$request->creditAmount;
+                    $newWalletEntry->balance=Crypt::encrypt($request->creditAmount);
                     $newWalletEntry->locked_amount=0;
                     $newWalletEntry->save();
                 }

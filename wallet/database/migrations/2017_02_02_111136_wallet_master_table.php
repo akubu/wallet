@@ -15,8 +15,8 @@ class WalletMasterTable extends Migration
         Schema::create('wallet_master', function (Blueprint $table) {
             $table->increments('id');
             $table->string('P2S_id');
-            $table->double('balance');
-            $table->double('locked_amount');
+            $table->string('balance');
+            $table->string('locked_amount');
             $table->timestamps();
         });
         //

@@ -97,7 +97,7 @@
                     {
                         "name": "Body",
                         "in": "body",
-                        "description": "P2s ID",
+                        "description": "Body data",
                         "required": true,
                         "schema": {
                             "type": "array",
@@ -110,10 +110,117 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "successful operation"
+                        "description": "successful"
                     },
-                    "400": {
-                        "description": "error"
+                    "404": {
+                        "description": "Network error"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/debit": {
+            "post": {
+                "tags": [
+                    "Debit"
+                ],
+                "summary": "Request for debit",
+                "operationId": "debit",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "JWT Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "type": "string",
+                        "collectionFormat": "multi"
+                    },
+                    {
+                        "name": "Body",
+                        "in": "body",
+                        "description": "Body data",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/wallet"
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "404": {
+                        "description": "Network error"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/lock": {
+            "post": {
+                "tags": [
+                    "Lock Request"
+                ],
+                "summary": "Request for lock",
+                "operationId": "Locking",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "JWT Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "type": "string",
+                        "collectionFormat": "multi"
+                    },
+                    {
+                        "name": "Body",
+                        "in": "body",
+                        "description": "Body data",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/wallet"
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "404": {
+                        "description": "Network error"
+                    },
+                    "500": {
+                        "description": "Internal server error"
                     }
                 }
             }

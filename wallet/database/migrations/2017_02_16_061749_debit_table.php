@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class WalletMasterTable extends Migration
+class DebitTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,13 @@ class WalletMasterTable extends Migration
      */
     public function up()
     {
-        Schema::create('wallet_master', function (Blueprint $table) {
+        Schema::create('debit', function (Blueprint $table) {
             $table->increments('id');
             $table->string('P2S_id');
-            $table->string('balance');
-            $table->string('locked_amount');
+            $table->string('debit_type');
+            $table->string('debit_amount');
+            $table->string('requested_by');
+            $table->string('order_id');
             $table->timestamps();
         });
         //
@@ -27,10 +29,9 @@ class WalletMasterTable extends Migration
      *
      * @return void
      */
-
     public function down()
     {
-        Schema::drop('wallet_master');
+        Schema::drop('debit');
         //
     }
 }

@@ -17,9 +17,12 @@ Route::group(['middleware' => 'logger'], function() {
 //        Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
         Route::post('authenticate', 'AuthenticateController@authenticate');
         Route::post('credit','walletController@credit');
+        Route::post('debit','walletController@debit');
+        Route::post('lock','walletController@lock');
     });
 
 });
+
 //Route::get('/', function () {
 //    return view('welcome');
 //});

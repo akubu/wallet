@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Model\credit;
 use App\Model\creditMaster;
+use App\Model\debit;
+use App\Model\lock;
 use App\Model\wallet;
 use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Contracts\Encryption\EncryptException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Psy\Exception\ErrorException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Support\Facades\DB;
@@ -46,7 +50,7 @@ class walletController extends Controller
      *     @SWG\Parameter(
      *         name="Body",
      *         in="body",
-     *         description="P2s ID",
+     *         description="Body data",
      *         required=true,
      *         type="string",
      *         @SWG\Schema(
@@ -54,13 +58,18 @@ class walletController extends Controller
      *             @SWG\Items(ref="#/definitions/wallet")
      *         ),
      *     ),
+     *
      *     @SWG\Response(
      *         response=200,
-     *         description="successful operation"
+     *         description="successful"
      *     ),
      *     @SWG\Response(
-     *         response="400",
-     *         description="error",
+     *         response=404,
+     *         description="Network error",
+     *     ),
+     *      @SWG\Response(
+     *         response=500,
+     *         description="Internal server error",
      *     )
      * )
      */
@@ -73,75 +82,298 @@ class walletController extends Controller
         try {
             $newCredit = new credit();
             $newCredit->P2S_id = $request->p2sID;
-            $credit_type = strtolower($request->creditType);
+//            $credit_type = strtolower($request->creditType);
 //            dd(creditMaster::where('credit_type', '=', $credit_type)->pluck('id'));
-            if ((creditMaster::where('credit_type', '=', $credit_type)->first())) {
+//            if ((creditMaster::where('credit_type', '=', $credit_type)->first())) {
 //               dd($idx);
-                $idx=creditMaster::where('credit_type', '=', $credit_type)->pluck('id');
-                $newCredit->credit_type = $idx[0];
+//                $idx=creditMaster::where('credit_type', '=', $credit_type)->pluck('id');
+//                $newCredit->credit_type = $idx[0];
 //                dd($newCredit->credit_type);
-            }
-            else {
-                try{
-                    $newCreditMaster = new creditMaster();
-                    $newCreditMaster->credit_type = $request->creditType;
-                    $newCreditMaster->save();
-                    $idx=creditMaster::where('credit_type', '=', $credit_type)->pluck('id');
-//                    dd($idx);
-                    $newCredit->credit_type=$idx[0];
-                }
-                catch (QueryException $exception){
-                    DB::rollback();
-                    return $exception;
-                }
-
-            }
+//            }
+//            else {
+//                try{
+//                    $newCreditMaster = new creditMaster();
+//                     $newCreditMaster->credit_type = $request->creditType;
+//                    $newCreditMaster->save();
+//                    $idx=creditMaster::where('credit_type', '=', $credit_type)->pluck('id');
+////                    dd($idx);
+//                    $newCredit->credit_type=$idx[0];
+//                }
+//                catch (QueryException $exception){
+//                    DB::rollback();
+//                    return $exception;
+//                }
+//
+//            }
+            $newCredit->credit_type=$request->creditType;
             $newCredit->credit_amount=Crypt::encrypt($request->creditAmount);
             $newCredit->requested_by=$request->requestedBy;
             $newCredit->order_id=$request->orderID;
             $newCredit->save();
-            if((wallet::where('P2S_id','=',$request->p2sID)->first())){
-                try{
-                    $current_balance=wallet::where('P2S_id','=',$request->p2sID)->pluck('balance');
+            if((wallet::where('P2S_id','=',$request->p2sID)->first())) {
+                $current_balance = wallet::where('P2S_id', '=', $request->p2sID)->pluck('balance');
+                $new_balance = Crypt::decrypt($current_balance[0]) + $request->creditAmount;
+                $new_balance = Crypt::encrypt($new_balance);
+                wallet::where('P2S_id', '=', $request->p2sID)->update(['balance' => $new_balance]);
+            }
+            else {
+                $newWalletEntry = new wallet();
+                $newWalletEntry->P2S_id = $request->p2sID;
+                $newWalletEntry->balance = Crypt::encrypt($request->creditAmount);
+                $newWalletEntry->locked_amount = 0;
+                $newWalletEntry->save();
+            }
+            $status="successful";
+            $currentBalance=wallet::where('P2S_id','=',$request->p2sID)->pluck('balance');
+            $walletBalance=Crypt::decrypt($currentBalance[0]);
+            $creditID=DB::table('credit')->max('id');
+            $response=['status'=>$status,'currentBalance'=>$walletBalance,'creditID'=>$creditID];
+            $json=\GuzzleHttp\json_encode($response);
+            DB::commit();
+            return $json;
+        }catch (QueryException $exception){
+            DB::rollback();
+            $response=['status'=>'unsuccessful','reason'=>$exception->getMessage()];
+            $json=\GuzzleHttp\json_encode($response);
+            return $json;
+        }catch (EncryptException $exception){
+            DB::rollback();
+            $response=['status'=>'unsuccessful','reason'=>$exception->getMessage()];
+            $json=\GuzzleHttp\json_encode($response);
+            return $json;
+        }catch (DecryptException $exception){
+            DB::rollback();
+            $response=['status'=>'unsuccessful','reason'=>$exception->getMessage()];
+            $json=\GuzzleHttp\json_encode($response);
+            return $json;
+        }catch (\ErrorException $exception){
+            DB::rollback();
+            $response=['status'=>'unsuccessful','reason'=>$exception->getMessage()];
+            $json=\GuzzleHttp\json_encode($response);
+            return $json;
+        }
 
-                    try {
-                        $new_balance = Crypt::decrypt($current_balance[0]) + $request->creditAmount;
 
-                    }catch (DecryptException $exception){
-                        DB::rollback();
-                        return $exception;
-                    }
-                    $new_balance=Crypt::encrypt($new_balance);
-                    wallet::where('P2S_id','=',$request->p2sID)->update(['balance'=>$new_balance]);
-                }
-                catch (QueryException $exception){
+    }
+
+    /**
+     * @SWG\post(
+     *     path="/api/debit",
+     *     summary="Request for debit",
+     *     tags={"Debit"},
+     *     operationId="debit",
+     *     consumes={"application/json"},
+     *     produces={"application/json"},
+     *     @SWG\Parameter(
+     *         name="token",
+     *         in="query",
+     *         description="JWT Token",
+     *         required=true,
+     *         type="string",
+     *         @SWG\Schema(type="string"),
+     *         collectionFormat="multi"
+     *     ),
+     *     @SWG\Parameter(
+     *         name="Body",
+     *         in="body",
+     *         description="Body data",
+     *         required=true,
+     *         type="string",
+     *         @SWG\Schema(
+     *             type="array",
+     *             @SWG\Items(ref="#/definitions/wallet")
+     *         ),
+     *     ),
+     *
+     *     @SWG\Response(
+     *         response=200,
+     *         description="successful"
+     *     ),
+     *     @SWG\Response(
+     *         response=404,
+     *         description="Network error",
+     *     ),
+     *      @SWG\Response(
+     *         response=500,
+     *         description="Internal server error",
+     *     )
+     * )
+     */
+
+    public function debit(Request $request)
+    {
+        DB::beginTransaction();
+        try{
+            if(wallet::where('P2S_id','=',$request->p2sID)->first()){
+                $balance=wallet::where('P2S_id','=',$request->p2sID)->pluck('balance');
+                $currentBalance=Crypt::decrypt($balance[0]);
+                if($request->debitAmount>$currentBalance){
                     DB::rollback();
-                    return $exception;
+                    $response=['status'=>'unsuccessful','reason'=>'current balance is less than debit amount','currentBalance'=>$currentBalance];
+                    $json=\GuzzleHttp\json_encode($response);
+                    return $json;
                 }
+                $newDebit=new debit();
+                $newDebit->P2S_id=$request->p2sID;
+                $newDebit->debit_type=$request->debitType;
+                $newDebit->debit_amount=$request->debitAmount;
+                $newDebit->requested_by=$request->requestedBy;
+                $newDebit->order_id=$request->orderID;
+                $newDebit->save();
+                $new_balance=Crypt::encrypt($currentBalance-$request->debitAmount);
+                wallet::where('P2S_id','=',$request->p2sID)->update(['balance'=>$new_balance]);
+                $status="successful";
+                $currentBalance=wallet::where('P2S_id','=',$request->p2sID)->pluck('balance');
+                $walletBalance=Crypt::decrypt($currentBalance[0]);
+                $debitID=DB::table('debit')->max('id');
+                $response=['status'=>$status,'currentBalance'=>$walletBalance,'debitID'=>$debitID];
+                $json=\GuzzleHttp\json_encode($response);
+                DB::commit();
+                return $json;
             }
             else{
-                try{
-                    $newWalletEntry=new wallet();
-                    $newWalletEntry->P2S_id=$request->p2sID;
-                    $newWalletEntry->balance=Crypt::encrypt($request->creditAmount);
-                    $newWalletEntry->locked_amount=0;
-                    $newWalletEntry->save();
-                }
-                catch (QueryException $exception){
-                    DB::rollback();
-                    return $exception;
-                }
-
+                DB::rollback();
+                $response=['status'=>'unsuccessful','reason'=>'NO P2SID found for the request'];
+                $json=\GuzzleHttp\json_encode($response);
+                return $json;
             }
-        }
-        catch(QueryException $exception){
-            DB::rollback();
-            return $exception;
 
+        }catch (QueryException $exception){
+            DB::rollback();
+            $response=['status'=>'unsuccessful','reason'=>$exception->getMessage()];
+            $json=\GuzzleHttp\json_encode($response);
+            return $json;
+        }catch (EncryptException $exception){
+            DB::rollback();
+            $response=['status'=>'unsuccessful','reason'=>$exception->getMessage()];
+            $json=\GuzzleHttp\json_encode($response);
+            return $json;
+        }catch (DecryptException $exception){
+            DB::rollback();
+            $response=['status'=>'unsuccessful','reason'=>$exception->getMessage()];
+            $json=\GuzzleHttp\json_encode($response);
+            return $json;
+        }catch (\ErrorException $exception){
+            DB::rollback();
+            $response=['status'=>'unsuccessful','reason'=>$exception->getMessage()];
+            $json=\GuzzleHttp\json_encode($response);
+            return $json;
         }
-        DB::commit();
-        $status="successfull";
-        return $status;
+
+    }
+    /**
+     * @SWG\post(
+     *     path="/api/lock",
+     *     summary="Request for lock",
+     *     tags={"Lock Request"},
+     *     operationId="Locking",
+     *     consumes={"application/json"},
+     *     produces={"application/json"},
+     *     @SWG\Parameter(
+     *         name="token",
+     *         in="query",
+     *         description="JWT Token",
+     *         required=true,
+     *         type="string",
+     *         @SWG\Schema(type="string"),
+     *         collectionFormat="multi"
+     *     ),
+     *     @SWG\Parameter(
+     *         name="Body",
+     *         in="body",
+     *         description="Body data",
+     *         required=true,
+     *         type="string",
+     *         @SWG\Schema(
+     *             type="array",
+     *             @SWG\Items(ref="#/definitions/wallet")
+     *         ),
+     *     ),
+     *
+     *     @SWG\Response(
+     *         response=200,
+     *         description="successful"
+     *     ),
+     *     @SWG\Response(
+     *         response=404,
+     *         description="Network error",
+     *     ),
+     *      @SWG\Response(
+     *         response=500,
+     *         description="Internal server error",
+     *     )
+     * )
+     */
+    public function lock(Request $request)
+    {
+        DB::beginTransaction();
+        try{
+            if(wallet::where('P2S_id','=',$request->p2sID)->first()){
+                $balance=wallet::where('P2S_id','=',$request->p2sID)->pluck('balance');
+                $currentBalance=Crypt::decrypt($balance[0]);
+                if($request->lockAmount>$currentBalance){
+                    DB::rollback();
+                    $response=['status'=>'unsuccessful','reason'=>'current balance is less than the requested locked amount','currentBalance'=>$currentBalance];
+                    $json=\GuzzleHttp\json_encode($response);
+                    return $json;
+                }
+                $newEntry=new lock();
+                $newEntry->P2S_id=$request->p2sID;
+                $newEntry->lock_type=$request->lockType;
+                $newEntry->lock_amount=$request->lockAmount;
+                $newEntry->requested_by=$request->requestedBy;
+                $newEntry->save();
+                $new_balance=Crypt::encrypt($currentBalance-$request->lockAmount);
+                $lockedAmount=wallet::where('P2S_id','=',$request->p2sID)->pluck('locked_amount');
+                if($lockedAmount[0]=='0'){
+                    $newLockedAmount=Crypt::encrypt($request->lockAmount);
+                }
+                else{
+
+                    $currentLockedAmount=Crypt::decrypt($lockedAmount[0]);
+                    $newLockedAmount=Crypt::encrypt($currentLockedAmount+$request->lockAmount);
+                }
+                wallet::where('P2S_id','=',$request->p2sID)->update(['balance'=>$new_balance,'locked_amount'=>$newLockedAmount]);
+                $status="successful";
+                $currentBalance=wallet::where('P2S_id','=',$request->p2sID)->pluck('balance');
+                $currentLockedAmount=wallet::where('P2S_id','=',$request->p2sID)->pluck('locked_amount');
+                $walletBalance=Crypt::decrypt($currentBalance[0]);
+                $lockedAmount=Crypt::decrypt($currentLockedAmount[0]);
+                $lockID=DB::table('lock')->max('id');
+                $response=['status'=>$status,'currentBalance'=>$walletBalance,'lockedAmount'=>$lockedAmount,'lockID'=>$lockID];
+                $json=\GuzzleHttp\json_encode($response);
+                DB::commit();
+                return $json;
+            }
+            else{
+                DB::rollback();
+                $response=['status'=>'unsuccessful','reason'=>'NO P2SID found for the request'];
+                $json=\GuzzleHttp\json_encode($response);
+                return $json;
+            }
+
+        }catch (QueryException $exception){
+            DB::rollback();
+            $response=['status'=>'unsuccessful','reason'=>$exception->getMessage()];
+            $json=\GuzzleHttp\json_encode($response);
+            return $json;
+        }catch (EncryptException $exception){
+            DB::rollback();
+            $response=['status'=>'unsuccessful','reason'=>$exception->getMessage()];
+            $json=\GuzzleHttp\json_encode($response);
+            return $json;
+        }catch (DecryptException $exception){
+            DB::rollback();
+            $response=['status'=>'unsuccessful','reason'=>$exception->getMessage()];
+            $json=\GuzzleHttp\json_encode($response);
+            return $json;
+        }catch (\ErrorException $exception){
+            DB::rollback();
+            $response=['status'=>'unsuccessful','reason'=>$exception->getMessage()];
+            $json=\GuzzleHttp\json_encode($response);
+            return $json;
+        }
+
     }
     //
 }

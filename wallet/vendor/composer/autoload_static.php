@@ -873,6 +873,8 @@ class ComposerStaticInit33797bfd41e4bca0fd2ed7476a75d66e
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
         'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
+        'UnlockMasterTable' => __DIR__ . '/../..' . '/database/migrations/2017_02_16_110956_unlock_master_table.php',
+        'UnlockTable' => __DIR__ . '/../..' . '/database/migrations/2017_02_16_110821_unlock_table.php',
         'WalletMasterTable' => __DIR__ . '/../..' . '/database/migrations/2017_02_02_111136_wallet_master_table.php',
     );
 

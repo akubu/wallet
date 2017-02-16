@@ -527,5 +527,7 @@ return array(
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
+    'UnlockMasterTable' => $baseDir . '/database/migrations/2017_02_16_110956_unlock_master_table.php',
+    'UnlockTable' => $baseDir . '/database/migrations/2017_02_16_110821_unlock_table.php',
     'WalletMasterTable' => $baseDir . '/database/migrations/2017_02_02_111136_wallet_master_table.php',
 );

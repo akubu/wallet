@@ -19,6 +19,10 @@ Route::group(['middleware' => 'logger'], function() {
         Route::post('credit','walletController@credit');
         Route::post('debit','walletController@debit');
         Route::post('lock','walletController@lock');
+        Route::post('unlock','walletController@unlock');
+        Route::get('getWalletDetails','walletController@getWalletDetails');
+        Route::get('getCreditDetails','walletController@getCreditDetails');
+        Route::get('getDebitDetails','walletController@getDebitDetails');
     });
 
 });

@@ -7,7 +7,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wallet/app/Http/Controllers/walletController.php" afterPath="$PROJECT_DIR$/wallet/app/Http/Controllers/walletController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wallet/app/Http/routes.php" afterPath="$PROJECT_DIR$/wallet/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wallet/database/migrations/2017_02_02_111136_wallet_master_table.php" afterPath="$PROJECT_DIR$/wallet/database/migrations/2017_02_02_111136_wallet_master_table.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wallet/storage/docs/api-docs.json" afterPath="$PROJECT_DIR$/wallet/storage/docs/api-docs.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wallet/vendor/composer/autoload_classmap.php" afterPath="$PROJECT_DIR$/wallet/vendor/composer/autoload_classmap.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wallet/vendor/composer/autoload_static.php" afterPath="$PROJECT_DIR$/wallet/vendor/composer/autoload_static.php" />
@@ -28,8 +27,8 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wallet/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+            <state relative-caret-position="330">
+              <caret line="22" column="58" lean-forward="false" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -38,18 +37,38 @@
       <file leaf-file-name="walletController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wallet/app/Http/Controllers/walletController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="346" column="13" lean-forward="true" selection-start-line="346" selection-start-column="13" selection-end-line="346" selection-end-column="13" />
+            <state relative-caret-position="-371">
+              <caret line="653" column="29" lean-forward="true" selection-start-line="653" selection-start-column="29" selection-end-line="653" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2017_02_02_120413_log_table.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wallet/database/migrations/2017_02_02_120413_log_table.php">
+      <file leaf-file-name="2017_02_02_111106_credit_table.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wallet/database/migrations/2017_02_02_111106_credit_table.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="148">
+              <caret line="17" column="42" lean-forward="true" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AuthenticateController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wallet/app/Http/Controllers/AuthenticateController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="44" column="44" lean-forward="true" selection-start-line="44" selection-start-column="44" selection-end-line="44" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2017_02_16_110821_unlock_table.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wallet/database/migrations/2017_02_16_110821_unlock_table.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="364">
+              <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -58,18 +77,8 @@
       <file leaf-file-name="2017_02_16_084527_lock_table.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wallet/database/migrations/2017_02_16_084527_lock_table.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="16" column="34" lean-forward="false" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2017_02_16_062646_debit_master_table.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wallet/database/migrations/2017_02_16_062646_debit_master_table.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="27" column="10" lean-forward="true" selection-start-line="20" selection-start-column="8" selection-end-line="27" selection-end-column="10" />
+            <state relative-caret-position="225">
+              <caret line="21" column="11" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="21" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -78,25 +87,25 @@
       <file leaf-file-name="2017_02_16_085131_lock_master_table.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wallet/database/migrations/2017_02_16_085131_lock_master_table.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+            <state relative-caret-position="360">
+              <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="lock.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wallet/app/Model/lock.php">
+      <file leaf-file-name="2017_02_16_110956_unlock_master_table.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wallet/database/migrations/2017_02_16_110956_unlock_master_table.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state relative-caret-position="559">
+              <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="debit.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wallet/app/Model/debit.php">
+      <file leaf-file-name="unlock.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wallet/app/Model/unlock.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
               <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
@@ -110,16 +119,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
               <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2017_02_02_111136_wallet_master_table.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wallet/database/migrations/2017_02_02_111136_wallet_master_table.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -140,6 +139,9 @@
         <option value="$PROJECT_DIR$/wallet/database/migrations/2017_02_16_084527_lock_table.php" />
         <option value="$PROJECT_DIR$/wallet/database/migrations/2017_02_16_085131_lock_master_table.php" />
         <option value="$PROJECT_DIR$/wallet/app/Model/lock.php" />
+        <option value="$PROJECT_DIR$/wallet/database/migrations/2017_02_16_110821_unlock_table.php" />
+        <option value="$PROJECT_DIR$/wallet/database/migrations/2017_02_16_110956_unlock_master_table.php" />
+        <option value="$PROJECT_DIR$/wallet/app/Model/unlock.php" />
         <option value="$PROJECT_DIR$/wallet/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/wallet/app/Http/Controllers/walletController.php" />
       </list>
@@ -402,12 +404,12 @@
       <workItem from="1486533231041" duration="680000" />
       <workItem from="1486617360664" duration="13748000" />
       <workItem from="1487056911656" duration="7592000" />
-      <workItem from="1487221829251" duration="12727000" />
+      <workItem from="1487221829251" duration="19278000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34747000" />
+    <option name="totallyTimeSpent" value="41298000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="716" extended-state="6" />
@@ -419,7 +421,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.024038462" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21314102" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -499,14 +501,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wallet/database/migrations/2017_02_02_111106_credit_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wallet/database/migrations/2017_02_02_111051_credit_master_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -531,26 +525,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wallet/database/migrations/2017_02_16_085131_lock_master_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wallet/app/Model/lock.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wallet/database/migrations/2017_02_16_084527_lock_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="16" column="34" lean-forward="false" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="34" />
           <folding />
         </state>
       </provider>
@@ -571,6 +549,62 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/wallet/database/migrations/2017_02_16_084527_lock_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="21" column="11" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="21" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wallet/database/migrations/2017_02_16_085131_lock_master_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wallet/database/migrations/2017_02_16_110956_unlock_master_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="559">
+          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wallet/app/Model/unlock.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wallet/app/Http/Controllers/AuthenticateController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="44" column="44" lean-forward="true" selection-start-line="44" selection-start-column="44" selection-end-line="44" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wallet/database/migrations/2017_02_16_110821_unlock_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="364">
+          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wallet/database/migrations/2017_02_02_111106_credit_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="17" column="42" lean-forward="true" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/wallet/database/migrations/2017_02_16_061749_debit_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -581,16 +615,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/wallet/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        <state relative-caret-position="330">
+          <caret line="22" column="58" lean-forward="false" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="58" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wallet/app/Http/Controllers/walletController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="346" column="13" lean-forward="true" selection-start-line="346" selection-start-column="13" selection-end-line="346" selection-end-column="13" />
+        <state relative-caret-position="-371">
+          <caret line="653" column="29" lean-forward="true" selection-start-line="653" selection-start-column="29" selection-end-line="653" selection-end-column="29" />
           <folding />
         </state>
       </provider>

@@ -224,6 +224,208 @@
                     }
                 }
             }
+        },
+        "/api/unlock": {
+            "post": {
+                "tags": [
+                    "Unlock Request"
+                ],
+                "summary": "Request for unlock",
+                "operationId": "Unlocking",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "JWT Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "type": "string",
+                        "collectionFormat": "multi"
+                    },
+                    {
+                        "name": "Body",
+                        "in": "body",
+                        "description": "Body data",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/wallet"
+                            }
+                        },
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "404": {
+                        "description": "Network error"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/getWalletDetails": {
+            "get": {
+                "tags": [
+                    "Wallet Detail Request"
+                ],
+                "summary": "Request for wallet Details",
+                "operationId": "wallet Details",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "multipart/form-data"
+                ],
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "JWT Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "type": "string",
+                        "collectionFormat": "multi"
+                    },
+                    {
+                        "name": "p2sID",
+                        "in": "query",
+                        "description": "P2S ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "type": "string",
+                        "collectionFormat": "multi"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "404": {
+                        "description": "Network error"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/getCreditDetails": {
+            "get": {
+                "tags": [
+                    "Credit Details request"
+                ],
+                "summary": "Request for credit Details",
+                "operationId": "get credit details",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "multipart/form-data"
+                ],
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "JWT Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "type": "string",
+                        "collectionFormat": "multi"
+                    },
+                    {
+                        "name": "p2sID",
+                        "in": "query",
+                        "description": "P2S ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "type": "string",
+                        "collectionFormat": "multi"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "404": {
+                        "description": "Network error"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/api/getDebitDetails": {
+            "get": {
+                "tags": [
+                    "debit details Request"
+                ],
+                "summary": "Request for debit Details",
+                "operationId": "get debit details",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "multipart/form-data"
+                ],
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "JWT Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "type": "string",
+                        "collectionFormat": "multi"
+                    },
+                    {
+                        "name": "p2sID",
+                        "in": "query",
+                        "description": "P2S ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "type": "string",
+                        "collectionFormat": "multi"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful"
+                    },
+                    "404": {
+                        "description": "Network error"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
         }
     },
     "definitions": {},

@@ -362,6 +362,17 @@
                         },
                         "type": "string",
                         "collectionFormat": "multi"
+                    },
+                    {
+                        "name": "level",
+                        "in": "query",
+                        "description": "if not provided return last 10 otherwise last N",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "type": "integer",
+                        "collectionFormat": "multi"
                     }
                 ],
                 "responses": {
@@ -411,6 +422,17 @@
                             "type": "string"
                         },
                         "type": "string",
+                        "collectionFormat": "multi"
+                    },
+                    {
+                        "name": "level",
+                        "in": "query",
+                        "description": "if not provided return last 10 otherwise last N",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "type": "integer",
                         "collectionFormat": "multi"
                     }
                 ],

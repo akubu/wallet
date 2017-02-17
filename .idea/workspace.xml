@@ -6,10 +6,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wallet/vendor/doctrine/lexer" afterPath="$PROJECT_DIR$/wallet/vendor/doctrine/lexer" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wallet/app/Http/Controllers/walletController.php" afterPath="$PROJECT_DIR$/wallet/app/Http/Controllers/walletController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wallet/app/Http/routes.php" afterPath="$PROJECT_DIR$/wallet/app/Http/routes.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wallet/storage/docs/api-docs.json" afterPath="$PROJECT_DIR$/wallet/storage/docs/api-docs.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wallet/vendor/composer/autoload_classmap.php" afterPath="$PROJECT_DIR$/wallet/vendor/composer/autoload_classmap.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/wallet/vendor/composer/autoload_static.php" afterPath="$PROJECT_DIR$/wallet/vendor/composer/autoload_static.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,8 +34,8 @@
       <file leaf-file-name="walletController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wallet/app/Http/Controllers/walletController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-371">
-              <caret line="653" column="29" lean-forward="true" selection-start-line="653" selection-start-column="29" selection-end-line="653" selection-end-column="29" />
+            <state relative-caret-position="274">
+              <caret line="643" column="13" lean-forward="true" selection-start-line="643" selection-start-column="13" selection-end-line="643" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -69,16 +66,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="364">
               <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2017_02_16_084527_lock_table.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wallet/database/migrations/2017_02_16_084527_lock_table.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="21" column="11" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="21" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -117,8 +104,8 @@
       <file leaf-file-name="2017_02_16_061749_debit_table.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wallet/database/migrations/2017_02_16_061749_debit_table.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+            <state relative-caret-position="75">
+              <caret line="15" column="37" lean-forward="true" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -404,12 +391,12 @@
       <workItem from="1486533231041" duration="680000" />
       <workItem from="1486617360664" duration="13748000" />
       <workItem from="1487056911656" duration="7592000" />
-      <workItem from="1487221829251" duration="19278000" />
+      <workItem from="1487221829251" duration="21069000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41298000" />
+    <option name="totallyTimeSpent" value="43089000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="716" extended-state="6" />
@@ -605,14 +592,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wallet/database/migrations/2017_02_16_061749_debit_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="24" column="5" lean-forward="true" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wallet/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -621,10 +600,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/wallet/database/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wallet/database/migrations/2017_02_16_061749_debit_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="15" column="37" lean-forward="true" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/wallet/app/Http/Controllers/walletController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-371">
-          <caret line="653" column="29" lean-forward="true" selection-start-line="653" selection-start-column="29" selection-end-line="653" selection-end-column="29" />
+        <state relative-caret-position="274">
+          <caret line="643" column="13" lean-forward="true" selection-start-line="643" selection-start-column="13" selection-end-line="643" selection-end-column="13" />
           <folding />
         </state>
       </provider>

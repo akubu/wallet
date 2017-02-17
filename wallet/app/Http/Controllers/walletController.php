@@ -601,7 +601,15 @@ class walletController extends Controller
      *         @SWG\Schema(type="string"),
      *         collectionFormat="multi"
      *     ),
-     *
+     *      @SWG\Parameter(
+     *         name="level",
+     *         in="query",
+     *         description="if not provided return last 10 otherwise last N",
+     *         required=false,
+     *         type="integer",
+     *         @SWG\Schema(type="integer"),
+     *         collectionFormat="multi"
+     *     ),
      *     @SWG\Response(
      *         response=200,
      *         description="successful"
@@ -620,10 +628,16 @@ class walletController extends Controller
     {
         try{
             if(wallet::where('P2S_id', '=', $request->p2sID)->first()){
-                $details=credit::where('P2S_id', '=', $request->p2sID)->get();
+                if($request->level){
+                    $details=credit::where('P2S_id', '=', $request->p2sID)->orderBy('id','desc')->take($request->level)->get();
+                }
+                else{
+                    $details=credit::where('P2S_id', '=', $request->p2sID)->orderBy('id','desc')->take(10)->get();
+                }
+
                 $response=array();
                 foreach ($details as $detail){
-                    array_push($response,['creditType'=>$detail['credit_type'],'creditAmount'=>Crypt::decrypt($detail['credit_amount']),'requestedBy'=>$detail['requested_by'],'orderID'=>$detail->order_id]);
+                    array_push($response,['creditID'=>$detail['id'],'creditType'=>$detail['credit_type'],'creditAmount'=>Crypt::decrypt($detail['credit_amount']),'requestedBy'=>$detail['requested_by'],'orderID'=>$detail->order_id]);
                 }
                 $json=\GuzzleHttp\json_encode(['status'=>'successful','creditDetails'=>$response]);
                 return $json;
@@ -682,7 +696,15 @@ class walletController extends Controller
      *         @SWG\Schema(type="string"),
      *         collectionFormat="multi"
      *     ),
-     *
+     *     @SWG\Parameter(
+     *         name="level",
+     *         in="query",
+     *         description="if not provided return last 10 otherwise last N",
+     *         required=false,
+     *         type="integer",
+     *         @SWG\Schema(type="integer"),
+     *         collectionFormat="multi"
+     *     ),
      *     @SWG\Response(
      *         response=200,
      *         description="successful"
@@ -702,10 +724,15 @@ class walletController extends Controller
     {
         try{
             if(wallet::where('P2S_id', '=', $request->p2sID)->first()){
-                $details=debit::where('P2S_id', '=', $request->p2sID)->get();
+                if($request->level){
+                    $details=debit::where('P2S_id', '=', $request->p2sID)->orderBy('id','desc')->take($request->level)->get();
+                }
+                else{
+                    $details=debit::where('P2S_id', '=', $request->p2sID)->orderBy('id','desc')->take(10)->get();
+                }
                 $response=array();
                 foreach ($details as $detail){
-                    array_push($response,['debitType'=>$detail['debit_type'],'debitAmount'=>$detail['debit_amount'],'requestedBy'=>$detail['requested_by'],'orderID'=>$detail->order_id]);
+                    array_push($response,['debitID'=>$detail['id'],'debitType'=>$detail['debit_type'],'debitAmount'=>$detail['debit_amount'],'requestedBy'=>$detail['requested_by'],'orderID'=>$detail->order_id]);
                 }
                 $json=\GuzzleHttp\json_encode(['status'=>'successful','debitDetails'=>$response]);
                 return $json;
